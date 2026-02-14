@@ -308,7 +308,7 @@ import { hasProtocol } from 'ufo'
 - Keep functions under 50 lines
 - Accessibility is a first-class consideration &ndash; always consider ARIA attributes and keyboard navigation
 
-```vue
+```html
 <script setup lang="ts">
 import type { PackumentVersion } from '#shared/types'
 
@@ -324,7 +324,7 @@ Ideally, extract utilities into separate files so they can be unit tested. 🙏
 
 Always use **object syntax with named routes** for internal navigation. This makes links resilient to URL structure changes and provides type safety via `unplugin-vue-router`.
 
-```vue
+```html
 <!-- Good: named route -->
 <NuxtLink :to="{ name: 'settings' }">Settings</NuxtLink>
 
@@ -346,14 +346,14 @@ router.push('/search')
 
 For routes with parameters, pass them explicitly:
 
-```vue
+```html
 <NuxtLink :to="{ name: '~username', params: { username } }">Profile</NuxtLink>
 <NuxtLink :to="{ name: 'org', params: { org: orgName } }">Organization</NuxtLink>
 ```
 
 Query parameters work as expected:
 
-```vue
+```html
 <NuxtLink :to="{ name: 'compare', query: { packages: pkg.name } }">Compare</NuxtLink>
 ```
 
@@ -361,7 +361,7 @@ Query parameters work as expected:
 
 For package links, use the auto-imported `packageRoute()` utility from `app/utils/router.ts`. It handles scoped/unscoped packages and optional versions:
 
-```vue
+```html
 <!-- Links to /package/vue -->
 <NuxtLink :to="packageRoute('vue')">vue</NuxtLink>
 
@@ -504,7 +504,7 @@ See how `es`, `es-ES`, and `es-419` are configured in [config/i18n.ts](./config/
 1. Add your translation key to `i18n/locales/en.json` first (American English is the source of truth)
 2. Use the key in your component:
 
-   ```vue
+   ```html
    <template>
      <p>{{ $t('my.translation.key') }}</p>
    </template>
@@ -512,7 +512,7 @@ See how `es`, `es-ES`, and `es-419` are configured in [config/i18n.ts](./config/
 
    Or in script:
 
-   ```typescript
+   ```html
    <script setup lang="ts">
    const message = computed(() => $t('my.translation.key'))
    </script>
@@ -524,7 +524,7 @@ See how `es`, `es-ES`, and `es-419` are configured in [config/i18n.ts](./config/
    { "greeting": "Hello, {name}!" }
    ```
 
-   ```vue
+   ```html
    <p>{{ $t('greeting', { name: userName }) }}</p>
    ```
 
@@ -532,13 +532,13 @@ See how `es`, `es-ES`, and `es-419` are configured in [config/i18n.ts](./config/
 
    **Bad:**
 
-   ```vue
+   ```html
    <p>{{ $t('hello') }} {{ userName }}</p>
    ```
 
    **Good:**
 
-   ```vue
+   ```html
    <p>{{ $t('greeting', { name: userName }) }}</p>
    ```
 
@@ -554,7 +554,7 @@ See how `es`, `es-ES`, and `es-419` are configured in [config/i18n.ts](./config/
    }
    ```
 
-   ```vue
+   ```html
    <i18n-t keypath="agreement" tag="p">
      <template #terms>
        <NuxtLink to="/terms">{{ $t('terms_link') }}</NuxtLink>
@@ -577,7 +577,7 @@ See how `es`, `es-ES`, and `es-419` are configured in [config/i18n.ts](./config/
 
   **Bad:**
 
-  ```vue
+  ```html
   <!-- Template literal -->
   <p>{{ $t(`package.tabs.${tab}`) }}</p>
 
@@ -596,7 +596,7 @@ See how `es`, `es-ES`, and `es-419` are configured in [config/i18n.ts](./config/
   }))
   ```
 
-  ```vue
+  ```html
   <p>{{ tabLabels[tab] }}</p>
   ```
 
@@ -615,7 +615,7 @@ The extension is included in our workspace recommendations, so VSCode should pro
 
 Use vue-i18n's built-in formatters for locale-aware formatting:
 
-```vue
+```html
 <template>
   <p>{{ $n(12345) }}</p>
   <!-- "12,345" in en-US, "12 345" in fr-FR -->
